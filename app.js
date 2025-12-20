@@ -202,6 +202,7 @@ let currentState = {
 const screens = {
     welcome: document.getElementById('welcome-screen'),
     quiz: document.getElementById('quiz-screen'),
+    disclaimer: document.getElementById('disclaimer-screen'),
     result: document.getElementById('result-screen')
 };
 
@@ -495,12 +496,12 @@ function calculateAndShowResult() {
    –––––––––––––––––––––––– */
 
 function showDisclaimerModal(result, confidence) {
-    const modal = document.getElementById('disclaimer-modal');
+    const disclaimerScreen = document.getElementById('disclaimer-screen');
     const continueBtn = document.getElementById('continue-to-results-btn');
     const generatingIcon = document.getElementById('generating-icon');
 
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
+    showScreen('disclaimer');
+    disclaimerScreen.classList.add('active');
 
     // Show loading animation for 7 seconds, then reveal button
     setTimeout(() => {
@@ -514,8 +515,6 @@ function showDisclaimerModal(result, confidence) {
 
     // Handle continue button
     const handleContinue = () => {
-        modal.classList.remove('active');
-        document.body.style.overflow = '';
         showScreen('result');
         renderResult(result, confidence);
         createConfetti(); // Add confetti celebration

@@ -633,50 +633,10 @@ button:focus-visible {
 }
 
 /* ––––––––––––––––––––––––
-   MODAL
+   DISCLAIMER SCREEN
    –––––––––––––––––––––––– */
 
-.modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 2000;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-}
-
-.modal.active {
-    display: flex;
-}
-
-.modal-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(4px);
-    animation: fadeIn 0.3s ease;
-}
-
-.modal-content {
-    background: var(--card-bg);
-    border-radius: 16px;
-    padding: 40px 32px;
-    max-width: 500px;
-    width: 100%;
-    position: relative;
-    z-index: 1;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-    animation: slideUpScale 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.modal-content h2 {
+#disclaimer-screen h1 {
     font-family: 'Bodoni Moda', serif;
     font-size: 28px;
     font-weight: 700;
@@ -685,23 +645,21 @@ button:focus-visible {
     text-align: center;
 }
 
-.modal-text {
+.disclaimer-text {
     font-size: 16px;
     line-height: 1.6;
     color: var(--text-secondary);
     margin-bottom: 16px;
+    text-align: center;
 }
 
-.modal-text:last-of-type {
+.disclaimer-cta {
+    font-weight: 500;
+    color: var(--text-primary);
     margin-bottom: 32px;
 }
 
-.modal-cta {
-    font-weight: 500;
-    color: var(--text-primary);
-}
-
-.modal-cta strong {
+.disclaimer-cta strong {
     color: var(--primary);
 }
 
