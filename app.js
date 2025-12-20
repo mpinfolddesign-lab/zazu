@@ -76,10 +76,18 @@ const quizData = {
                 { label: "Fresh, icy, clean", scores: { tempCool: 2 } },
                 { label: "Warm, glowing, golden", scores: { tempWarm: 2 } }
             ]
+        },
+        {
+            id: 9,
+            text: "Your version of nude clothing is…",
+            options: [
+                { label: "Stone / rosewood / pewter", scores: { tempCool: 2 } },
+                { label: "Beige / warm sand / honey", scores: { tempWarm: 2 } }
+            ]
         }
     ],
     tieBreaker: {
-        id: 9,
+        id: 10,
         text: "Your version of nude clothing is…",
         options: [
             { label: "Stone / rosewood / pewter", scores: { tempCool: 2 } },
@@ -332,16 +340,16 @@ function renderQuestion() {
 }
 
 function updateProgress() {
-    const totalQuestions = 8;
+    const totalQuestions = 9;
     let current = currentState.currentQuestionIndex + 1;
 
     if (currentState.showingTieBreaker) {
-        current = 9;
+        current = 10;
     }
 
-    const percentage = (current / (currentState.showingTieBreaker ? 9 : totalQuestions)) * 100;
+    const percentage = (current / (currentState.showingTieBreaker ? 10 : totalQuestions)) * 100;
     elements.progressBar.style.width = `${percentage}%`;
-    elements.progressText.textContent = `Question ${current} of ${currentState.showingTieBreaker ? 9 : totalQuestions}`;
+    elements.progressText.textContent = `Question ${current} of ${currentState.showingTieBreaker ? 10 : totalQuestions}`;
 
     // Update ARIA
     const progressContainer = document.querySelector('.progress-container');
