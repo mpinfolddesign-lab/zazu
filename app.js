@@ -53,15 +53,6 @@ const quizData = {
         },
         {
             id: 6,
-            text: "Your most 'you' makeup look is…",
-            options: [
-                { label: "Bare skin, minimal", scores: { depthLight: 2 } },
-                { label: "Defined but natural", scores: { depthMid: 2 } },
-                { label: "Bold lip or smoky eye", scores: { depthDark: 2 } }
-            ]
-        },
-        {
-            id: 7,
             text: "Your best brown is closer to…",
             options: [
                 { label: "Taupe / grey-brown / cool cocoa", scores: { tempCool: 2 } },
@@ -70,8 +61,8 @@ const quizData = {
             ]
         },
         {
-            id: 8,
-            text: "When colours are intense, you tend to look…",
+            id: 7,
+            text: "When colours are intense (burgundy, royal blue, deep purple), you tend to look…",
             options: [
                 { label: "Overwhelmed or faded", scores: { depthLight: 2 } },
                 { label: "Fine if balanced", scores: { depthMid: 2 } },
@@ -79,7 +70,7 @@ const quizData = {
             ]
         },
         {
-            id: 9,
+            id: 8,
             text: "If you had to choose, you lean more…",
             options: [
                 { label: "Fresh, icy, clean", scores: { tempCool: 2 } },
@@ -88,11 +79,11 @@ const quizData = {
         }
     ],
     tieBreaker: {
-        id: 10,
+        id: 9,
         text: "Your version of nude clothing is…",
         options: [
-            { label: "Stone / cool beige / taupe", scores: { tempCool: 2 } },
-            { label: "Beige / sand / honey", scores: { tempWarm: 2 } }
+            { label: "Stone / rosewood / pewter", scores: { tempCool: 2 } },
+            { label: "Beige / warm sand / honey", scores: { tempWarm: 2 } }
         ]
     }
 };
@@ -341,16 +332,16 @@ function renderQuestion() {
 }
 
 function updateProgress() {
-    const totalQuestions = 9;
+    const totalQuestions = 8;
     let current = currentState.currentQuestionIndex + 1;
 
     if (currentState.showingTieBreaker) {
-        current = 10;
+        current = 9;
     }
 
-    const percentage = (current / (currentState.showingTieBreaker ? 10 : totalQuestions)) * 100;
+    const percentage = (current / (currentState.showingTieBreaker ? 9 : totalQuestions)) * 100;
     elements.progressBar.style.width = `${percentage}%`;
-    elements.progressText.textContent = `Question ${current} of ${currentState.showingTieBreaker ? 10 : totalQuestions}`;
+    elements.progressText.textContent = `Question ${current} of ${currentState.showingTieBreaker ? 9 : totalQuestions}`;
 
     // Update ARIA
     const progressContainer = document.querySelector('.progress-container');
