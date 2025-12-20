@@ -61,6 +61,7 @@
 
         <!-- Result Screen -->
         <div id="result-screen" class="screen">
+            <div id="confetti-container" class="confetti-container"></div>
             <div class="card card-result">
                 <div class="result-header">
                     <img src="ZF_LOGO.png" alt="Zazu Feu" class="brand-logo-small">
@@ -101,11 +102,33 @@
                     <button class="btn-gold" id="buy-guide-btn" aria-label="Buy the complete 25-page style guide">Buy My
                         25-Page Guide</button>
                     <button class="btn-pro" id="pro-service-btn"
-                        aria-label="Get professionally analysed by Zazu Feu">Get Pro Analysis by Zazu Feu</button>
+                        aria-label="Discover professional colour analysis by Zazu Feu">Discover Pro Analysis by Zazu
+                        Feu</button>
                     <button class="btn-secondary" id="restart-btn" aria-label="Start quiz again">Start Again</button>
                 </div>
 
                 <div id="share-notification" class="share-notification" role="status" aria-live="polite"></div>
+            </div>
+        </div>
+
+        <!-- Disclaimer Modal -->
+        <div id="disclaimer-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+            <div class="modal-overlay"></div>
+            <div class="modal-content">
+                <h2 id="modal-title">Your colour journey doesn't end here.</h2>
+                <p class="modal-text">This quiz offers a directional guide based on visual preferences. A professional
+                    colour analysis goes deeper... considering undertones, contrast, lifestyle, and how colours behave
+                    on you day to day.</p>
+                <p class="modal-text modal-cta">Curious to go further? <strong>Book a personalised consultation with
+                        us!</strong></p>
+
+                <div id="generating-icon" class="generating-container">
+                    <div class="spinner"></div>
+                    <p class="generating-text">Analysing your results...</p>
+                </div>
+
+                <button class="btn-primary" id="continue-to-results-btn" style="display: none;"
+                    aria-label="Continue to see your results">Show My Results</button>
             </div>
         </div>
     </div>

@@ -478,9 +478,80 @@ function calculateAndShowResult() {
     currentState.confidence = confidence;
     saveState();
 
-    // Show result screen
-    showScreen('result');
-    renderResult(result, confidence);
+    // Show disclaimer modal first
+    showDisclaimerModal(result, confidence);
+}
+
+/* ––––––––––––––––––––––––
+   DISCLAIMER MODAL
+   –––––––––––––––––––––––– */
+
+function showDisclaimerModal(result, confidence) {
+    const modal = document.getElementById('disclaimer-modal');
+    const continueBtn = document.getElementById('continue-to-results-btn');
+    const generatingIcon = document.getElementById('generating-icon');
+
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+
+    // Show loading animation for 7 seconds, then reveal button
+    setTimeout(() => {
+        generatingIcon.style.display = 'none';
+        continueBtn.style.display = 'block';
+        // Small delay for display change, then add visible class for animation
+        setTimeout(() => {
+            continueBtn.classList.add('visible');
+        }, 50);
+    }, 7000);
+
+    // Handle continue button
+    const handleContinue = () => {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+        showScreen('result');
+        renderResult(result, confidence);
+        createConfetti(); // Add confetti celebration
+        continueBtn.removeEventListener('click', handleContinue);
+    };
+
+    continueBtn.addEventListener('click', handleContinue);
+}
+
+/* ––––––––––––––––––––––––
+   CONFETTI ANIMATION
+   –––––––––––––––––––––––– */
+
+function createConfetti() {
+    const container = document.getElementById('confetti-container');
+    container.innerHTML = ''; // Clear existing confetti
+
+    const colors = ['#D85B7D', '#E87B98', '#C34A6B', '#F9E79F', '#D4AF37', '#6B5B95'];
+    const confettiCount = 80;
+
+    for (let i = 0; i < confettiCount; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+
+        // Random positioning
+        confetti.style.left = Math.random() * 100 + '%';
+        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+
+        // Random size
+        const size = Math.random() * 8 + 6;
+        confetti.style.width = size + 'px';
+        confetti.style.height = size + 'px';
+
+        // Random animation duration and delay
+        confetti.style.animationDuration = (Math.random() * 3 + 3) + 's';
+        confetti.style.animationDelay = Math.random() * 0.5 + 's';
+
+        container.appendChild(confetti);
+    }
+
+    // Clear confetti after animation completes
+    setTimeout(() => {
+        container.innerHTML = '';
+    }, 7000);
 }
 
 /* ––––––––––––––––––––––––
