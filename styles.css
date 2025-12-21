@@ -440,6 +440,41 @@ button:focus-visible {
     line-height: 1.6;
 }
 
+.result-colours {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.colour-category {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.colour-category-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.colour-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.colour-tag {
+    display: inline-block;
+    padding: 6px 12px;
+    background-color: var(--background);
+    border-radius: 6px;
+    font-size: 14px;
+    color: var(--text-primary);
+}
+
 .colour-preview {
     display: flex;
     flex-wrap: wrap;

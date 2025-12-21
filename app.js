@@ -592,34 +592,36 @@ function renderResult(resultKey, confidence = 'Medium') {
     // Update description
     document.getElementById('result-description').textContent = result.description;
 
-    // Show a preview of colours (first 6)
-    const colourPreview = document.getElementById('result-colour-preview');
-    colourPreview.innerHTML = '';
+    // Show colours organized by category
+    const coloursContainer = document.getElementById('result-colours');
+    coloursContainer.innerHTML = '';
 
-    let colourCount = 0;
     Object.keys(result.colours).forEach(category => {
+        const categoryDiv = document.createElement('div');
+        categoryDiv.className = 'colour-category';
+
+        const categoryTitle = document.createElement('div');
+        categoryTitle.className = 'colour-category-title';
+        categoryTitle.textContent = category;
+
+        const colourList = document.createElement('div');
+        colourList.className = 'colour-list';
+
         result.colours[category].forEach(colour => {
-            if (colourCount < 6) {
-                const colourTag = document.createElement('span');
-                colourTag.className = 'colour-tag';
-                colourTag.textContent = colour;
-                colourPreview.appendChild(colourTag);
-                colourCount++;
-            }
+            const colourTag = document.createElement('span');
+            colourTag.className = 'colour-tag';
+            colourTag.textContent = colour;
+            colourList.appendChild(colourTag);
         });
+
+        categoryDiv.appendChild(categoryTitle);
+        categoryDiv.appendChild(colourList);
+        coloursContainer.appendChild(categoryDiv);
     });
 
-    // Show a preview of style chips (first 3)
-    const styleChipsPreview = document.getElementById('style-chips-preview');
-    styleChipsPreview.innerHTML = '';
+    // Show avoid section
+    document.getElementById('result-avoid').textContent = result.avoid;
 
-    result.styleChips.slice(0, 3).forEach((chip, index) => {
-        const chipElement = document.createElement('span');
-        chipElement.className = 'style-chip';
-        chipElement.textContent = chip;
-        chipElement.style.animationDelay = (0.1 + index * 0.05) + 's';
-        styleChipsPreview.appendChild(chipElement);
-    });
 
     // Set up Learn More button to link to colour type page
     const learnMoreBtn = document.getElementById('learn-more-btn');
