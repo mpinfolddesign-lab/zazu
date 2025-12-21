@@ -571,58 +571,69 @@ function renderResult(resultKey, confidence = 'Medium') {
     // Update header
     document.getElementById('result-name').textContent = result.name;
     document.getElementById('result-subtitle').textContent = result.subtitle;
-    document.getElementById('result-confidence').textContent = `Confidence: ${confidence}`;
+
+    // Update confidence gauge
+    const confidenceBar = document.getElementById('confidence-bar');
+    const confidenceText = document.getElementById('confidence-text');
+
+    confidenceText.textContent = confidence;
+
+    // Set gauge width and color based on confidence
+    const confidenceLevels = {
+        'Low': { width: '33%', color: '#E87B98' },
+        'Medium': { width: '66%', color: '#D4AF37' },
+        'High': { width: '100%', color: '#6B5B95' }
+    };
+
+    const level = confidenceLevels[confidence] || confidenceLevels['Medium'];
+    confidenceBar.style.width = level.width;
+    confidenceBar.style.backgroundColor = level.color;
 
     // Update description
     document.getElementById('result-description').textContent = result.description;
 
-    // Update colours
-    const coloursContainer = document.getElementById('result-colours');
-    coloursContainer.innerHTML = '';
+    // Show a preview of colours (first 6)
+    const colourPreview = document.getElementById('result-colour-preview');
+    colourPreview.innerHTML = '';
 
+    let colourCount = 0;
     Object.keys(result.colours).forEach(category => {
-        const categoryDiv = document.createElement('div');
-        categoryDiv.className = 'colour-category';
-
-        const categoryTitle = document.createElement('div');
-        categoryTitle.className = 'colour-category-title';
-        categoryTitle.textContent = category;
-
-        const colourList = document.createElement('div');
-        colourList.className = 'colour-list';
-
         result.colours[category].forEach(colour => {
-            const colourTag = document.createElement('span');
-            colourTag.className = 'colour-tag';
-            colourTag.textContent = colour;
-            colourList.appendChild(colourTag);
+            if (colourCount < 6) {
+                const colourTag = document.createElement('span');
+                colourTag.className = 'colour-tag';
+                colourTag.textContent = colour;
+                colourPreview.appendChild(colourTag);
+                colourCount++;
+            }
         });
-
-        categoryDiv.appendChild(categoryTitle);
-        categoryDiv.appendChild(colourList);
-        coloursContainer.appendChild(categoryDiv);
     });
 
-    // Update black guidance
-    if (result.blackGuidance) {
-        document.getElementById('black-guidance-section').style.display = 'block';
-        document.getElementById('black-guidance').textContent = result.blackGuidance;
-    } else {
-        document.getElementById('black-guidance-section').style.display = 'none';
-    }
+    // Show a preview of style chips (first 3)
+    const styleChipsPreview = document.getElementById('style-chips-preview');
+    styleChipsPreview.innerHTML = '';
 
-    // Update avoid
-    document.getElementById('result-avoid').textContent = result.avoid;
-
-    // Update style chips
-    const chipsContainer = document.getElementById('style-chips');
-    chipsContainer.innerHTML = '';
-
-    result.styleChips.forEach(chip => {
+    result.styleChips.slice(0, 3).forEach((chip, index) => {
         const chipElement = document.createElement('span');
         chipElement.className = 'style-chip';
         chipElement.textContent = chip;
-        chipsContainer.appendChild(chipElement);
+        chipElement.style.animationDelay = (0.1 + index * 0.05) + 's';
+        styleChipsPreview.appendChild(chipElement);
+    });
+
+    // Set up Learn More button to link to colour type page
+    const learnMoreBtn = document.getElementById('learn-more-btn');
+    learnMoreBtn.addEventListener('click', () => {
+        // Navigate to the colour type page - update these URLs with your actual pages
+        const typeUrls = {
+            'periwinkle': '/periwinkle',
+            'buttercup': '/buttercup',
+            'columbine': '/columbine',
+            'marigold': '/marigold',
+            'hellebore': '/hellebore',
+            'rudbeckia': '/rudbeckia'
+        };
+        window.location.href = typeUrls[resultKey] || '/';
     });
 }
 

@@ -21,10 +21,11 @@
         <div id="welcome-screen" class="screen active">
             <div class="card">
                 <img src="ZF_LOGO.png" alt="Zazu Feu" class="brand-logo">
-                <h1>Zazu Feu Colour System</h1>
-                <p class="subtitle">Discover your unique colour family</p>
-                <p class="intro-text">This quiz will help you identify which of six colour families suits you best,
-                    based on your natural warmth and depth.</p>
+                <h1>Discover your Zazu Feu Colour Type</h1>
+                <p class="intro-text">There are 6 colour types: <strong>Periwinkle, Buttercup, Columbine, Marigold,
+                        Hellebore,</strong> and <strong>Rudbeckia</strong>.</p>
+                <p class="intro-text">This quiz will help you identify which colour type suits you best, based on your
+                    natural warmth and depth.</p>
                 <p class="intro-text">Answer honestly — trust your instincts. There are no wrong answers.</p>
                 <button class="btn-primary" id="start-quiz-btn" aria-label="Start the quiz">Start Quiz</button>
             </div>
@@ -67,7 +68,13 @@
                     <img src="ZF_LOGO.png" alt="Zazu Feu" class="brand-logo-small">
                     <h1 id="result-name" class="result-name"></h1>
                     <p id="result-subtitle" class="result-subtitle"></p>
-                    <p id="result-confidence" class="result-confidence"></p>
+                    <div class="confidence-gauge">
+                        <span class="confidence-label">Confidence</span>
+                        <div class="gauge-container">
+                            <div class="gauge-bar" id="confidence-bar"></div>
+                        </div>
+                        <span class="confidence-text" id="confidence-text"></span>
+                    </div>
                 </div>
 
                 <div class="result-content">
@@ -77,23 +84,20 @@
                     </div>
 
                     <div class="result-section">
-                        <h2>Your Best Colours</h2>
-                        <div id="result-colours"></div>
-                    </div>
-
-                    <div class="result-section" id="black-guidance-section">
-                        <h2>Black on You</h2>
-                        <p id="black-guidance"></p>
-                    </div>
-
-                    <div class="result-section">
-                        <h2>Watch Out For</h2>
-                        <p id="result-avoid"></p>
+                        <h2>Colour Preview</h2>
+                        <div id="result-colour-preview" class="colour-preview"></div>
                     </div>
 
                     <div class="result-section">
                         <h2>Style Direction</h2>
-                        <div id="style-chips" class="style-chips"></div>
+                        <div id="style-chips-preview" class="style-chips"></div>
+                    </div>
+
+                    <div class="result-section result-cta-section">
+                        <p class="result-cta-text">Want to discover your complete colour palette, styling tips, and
+                            wardrobe recommendations?</p>
+                        <button class="btn-learn-more" id="learn-more-btn"
+                            aria-label="Learn more about your colour type">Learn More About Your Type</button>
                     </div>
                 </div>
 
@@ -114,12 +118,14 @@
         <!-- Disclaimer Screen -->
         <div id="disclaimer-screen" class="screen">
             <div class="card">
-                <h1>Your colour journey doesn't end here.</h1>
-                <p class="disclaimer-text">This quiz offers a directional guide based on visual preferences. A professional
-                    colour analysis goes deeper... considering undertones, contrast, lifestyle, and how colours behave
+                <h1>Your colour journey doesn't end here!</h1>
+                <p class="disclaimer-text">Zazu Feu quiz offers a directional guide based on visual preferences. A
+                    professional colour analysis goes deeper... considering undertones, contrast, lifestyle, and how
+                    colours behave
                     on you day to day.</p>
-                <p class="disclaimer-text disclaimer-cta">Curious to go further? <strong>Book a personalised consultation with
-                    us!</strong></p>
+                <p class="disclaimer-text disclaimer-cta">So it can't be used in replacement to our professional colour
+                    analysis services. Curious to go further? <strong>Book a personalised
+                        consultation with us!</strong></p>
 
                 <div id="generating-icon" class="generating-container">
                     <div class="spinner"></div>
