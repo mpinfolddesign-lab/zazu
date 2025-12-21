@@ -550,11 +550,19 @@ button:focus-visible {
 
 .colour-tag {
     display: inline-block;
-    padding: 6px 12px;
+    padding: 8px 14px;
     background-color: var(--background);
-    border-radius: 6px;
+    border-radius: 8px;
     font-size: 14px;
     color: var(--text-primary);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    font-weight: 500;
+}
+
+.colour-tag:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 /* ––––––––––––––––––––––––

@@ -561,6 +561,99 @@ function createConfetti() {
     }, 7000);
 }
 
+// Color mapping for visual swatches
+function getColorSwatch(colorName) {
+    const colorMap = {
+        // Whites & Creams
+        'Soft white': { bg: '#F8F8F8', text: '#333' },
+        'Cream': { bg: '#FFFDD0', text: '#333' },
+        'Ivory': { bg: '#FFFFF0', text: '#333' },
+        'Warm white': { bg: '#FFF9E6', text: '#333' },
+        'Crisp white': { bg: '#FAFAFA', text: '#333' },
+
+        // Greys & Neutrals
+        'Pearl grey': { bg: '#E8E8E8', text: '#333' },
+        'Cool beige': { bg: '#E3DCD0', text: '#333' },
+        'Dove grey': { bg: '#D3D3D3', text: '#333' },
+        'Warm beige': { bg: '#E8DCC5', text: '#333' },
+        'Soft camel': { bg: '#C19A6B', text: '#FFF' },
+        'Charcoal': { bg: '#4A4A4A', text: '#FFF' },
+        'Taupe': { bg: '#B8A99A', text: '#FFF' },
+        'Greige': { bg: '#C9BEB0', text: '#333' },
+        'Espresso': { bg: '#3E2723', text: '#FFF' },
+        'Deep brown': { bg: '#5D4037', text: '#FFF' },
+        'Warm black': { bg: '#2C2624', text: '#FFF' },
+        'Bronze': { bg: '#8B6341', text: '#FFF' },
+        'Chocolate': { bg: '#4E342E', text: '#FFF' },
+        'Soft black': { bg: '#3B3B3B', text: '#FFF' },
+        'Navy': { bg: '#1A237E', text: '#FFF' },
+        'True black': { bg: '#000000', text: '#FFF' },
+
+        // Pinks & Roses
+        'Baby pink': { bg: '#FFD6E8', text: '#333' },
+        'Soft rose': { bg: '#F4C2C2', text: '#333' },
+        'Peach': { bg: '#FFDAB9', text: '#333' },
+        'Coral': { bg: '#FF7F50', text: '#FFF' },
+        'Warm pink': { bg: '#FFB6C1', text: '#333' },
+        'Apricot': { bg: '#FBCEB1', text: '#333' },
+        'Rose pink': { bg: '#E6A8D7', text: '#333' },
+        'Hot pink': { bg: '#FF69B4', text: '#FFF' },
+        'Magenta': { bg: '#C71585', text: '#FFF' },
+        'Dusty rose': { bg: '#DCAE96', text: '#333' },
+        'Mauve': { bg: '#D8B2D1', text: '#333' },
+        'Cool raspberry': { bg: '#E30B5D', text: '#FFF' },
+
+        // Reds & Burgundy
+        'True red': { bg: '#E32227', text: '#FFF' },
+        'Warm red': { bg: '#D73B3E', text: '#FFF' },
+        'Deep burgundy': { bg: '#800020', text: '#FFF' },
+        'Cherry red': { bg: '#990000', text: '#FFF' },
+        'Burgundy': { bg: '#800020', text: '#FFF' },
+        'Wine': { bg: '#722F37', text: '#FFF' },
+
+        // Blues
+        'Sky blue': { bg: '#87CEEB', text: '#333' },
+        'Periwinkle blue': { bg: '#CCCCFF', text: '#333' },
+        'Soft navy': { bg: '#4A5F7F', text: '#FFF' },
+        'Icy blue': { bg: '#B0E0E6', text: '#333' },
+        'Cobalt blue': { bg: '#0047AB', text: '#FFF' },
+        'Royal blue': { bg: '#4169E1', text: '#FFF' },
+        'Deep teal': { bg: '#004D4D', text: '#FFF' },
+        'Teal': { bg: '#008080', text: '#FFF' },
+        'Warm aqua': { bg: '#7FDBFF', text: '#333' },
+
+        // Purples
+        'Lavender': { bg: '#E6E6FA', text: '#333' },
+        'Soft plum': { bg: '#DDA0DD', text: '#333' },
+        'Deep plum': { bg: '#5D3A5A', text: '#FFF' },
+        'Rich purple': { bg: '#6A0DAD', text: '#FFF' },
+
+        // Greens
+        'Mint': { bg: '#AAF0D1', text: '#333' },
+        'Sage green': { bg: '#9DC183', text: '#333' },
+        'Forest green': { bg: '#228B22', text: '#FFF' },
+        'Emerald': { bg: '#50C878', text: '#FFF' },
+        'Pine green': { bg: '#2C5F2D', text: '#FFF' },
+
+        // Yellows & Golds
+        'Buttercup yellow': { bg: '#F3E05C', text: '#333' },
+        'Soft gold': { bg: '#FFD700', text: '#333' },
+        'Gold': { bg: '#D4AF37', text: '#333' },
+        'Lemon yellow': { bg: '#FFF44F', text: '#333' },
+
+        // Oranges & Rust
+        'Light terracotta': { bg: '#E2725B', text: '#FFF' },
+        'Burnt orange': { bg: '#CC5500', text: '#FFF' },
+        'Rust': { bg: '#B7410E', text: '#FFF' },
+        'Copper': { bg: '#B87333', text: '#FFF' },
+
+        // Others
+        'Silver': { bg: '#C0C0C0', text: '#333' }
+    };
+
+    return colorMap[colorName] || { bg: '#F6EFE8', text: '#333' };
+}
+
 /* ––––––––––––––––––––––––
    RESULT RENDERING
    –––––––––––––––––––––––– */
@@ -611,6 +704,12 @@ function renderResult(resultKey, confidence = 'Medium') {
             const colourTag = document.createElement('span');
             colourTag.className = 'colour-tag';
             colourTag.textContent = colour;
+
+            // Apply color swatch
+            const swatch = getColorSwatch(colour);
+            colourTag.style.backgroundColor = swatch.bg;
+            colourTag.style.color = swatch.text;
+
             colourList.appendChild(colourTag);
         });
 
