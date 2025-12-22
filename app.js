@@ -517,7 +517,7 @@ function showDisclaimerModal(result, confidence) {
     const handleContinue = () => {
         showScreen('result');
         renderResult(result, confidence);
-        createConfetti(); // Add confetti celebration
+        createConfetti(result); // Add confetti celebration with result type
         continueBtn.removeEventListener('click', handleContinue);
     };
 
@@ -528,12 +528,22 @@ function showDisclaimerModal(result, confidence) {
    CONFETTI ANIMATION
    –––––––––––––––––––––––– */
 
-function createConfetti() {
+function createConfetti(resultKey) {
     const container = document.getElementById('confetti-container');
     container.innerHTML = ''; // Clear existing confetti
 
-    const colors = ['#D85B7D', '#E87B98', '#C34A6B', '#F9E79F', '#D4AF37', '#6B5B95'];
-    const confettiCount = 80;
+    // Color palettes for each flower type
+    const colorPalettes = {
+        'periwinkle': ['#CCCCFF', '#87CEEB', '#FFD6E8', '#E6E6FA', '#B0E0E6', '#F4C2C2', '#AAF0D1'],
+        'buttercup': ['#F3E05C', '#FFD700', '#FFDAB9', '#FF7F50', '#FBCEB1', '#FFB6C1', '#7FDBFF'],
+        'columbine': ['#D8B2D1', '#DCAE96', '#9DC183', '#B0E0E6', '#DDA0DD', '#C9BEB0', '#87CEEB'],
+        'marigold': ['#F3E05C', '#E2725B', '#CC5500', '#B7410E', '#B87333', '#FFD700', '#D4AF37'],
+        'hellebore': ['#800020', '#722F37', '#5D3A5A', '#6A0DAD', '#0047AB', '#4169E1', '#2C5F2D'],
+        'rudbeckia': ['#3E2723', '#5D4037', '#8B6341', '#4E342E', '#800020', '#B7410E', '#D4AF37']
+    };
+
+    const colors = colorPalettes[resultKey] || ['#D85B7D', '#E87B98', '#C34A6B', '#F9E79F', '#D4AF37', '#6B5B95'];
+    const confettiCount = 150; // Increased from 80 to 150 for more intensity
 
     for (let i = 0; i < confettiCount; i++) {
         const confetti = document.createElement('div');
@@ -543,14 +553,14 @@ function createConfetti() {
         confetti.style.left = Math.random() * 100 + '%';
         confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
 
-        // Random size
-        const size = Math.random() * 8 + 6;
+        // Random size - increased range for more variety
+        const size = Math.random() * 12 + 6;
         confetti.style.width = size + 'px';
         confetti.style.height = size + 'px';
 
         // Random animation duration and delay
-        confetti.style.animationDuration = (Math.random() * 3 + 3) + 's';
-        confetti.style.animationDelay = Math.random() * 0.5 + 's';
+        confetti.style.animationDuration = (Math.random() * 3 + 2.5) + 's';
+        confetti.style.animationDelay = Math.random() * 1 + 's';
 
         container.appendChild(confetti);
     }
@@ -558,7 +568,7 @@ function createConfetti() {
     // Clear confetti after animation completes
     setTimeout(() => {
         container.innerHTML = '';
-    }, 7000);
+    }, 8000); // Increased from 7000 to 8000
 }
 
 // Color mapping for visual swatches
@@ -662,6 +672,18 @@ function renderResult(resultKey, confidence = 'Medium') {
     const result = resultData[resultKey];
 
     // Update header
+    const flowerImg = document.getElementById('result-flower');
+    const flowerMap = {
+        'periwinkle': 'Flowers/ZAZU_FLOWERS_Periwinkle.png',
+        'buttercup': 'Flowers/ZAZU_FLOWERS_Buttercup.png',
+        'columbine': 'Flowers/ZAZU_FLOWERS_Columbine.png',
+        'marigold': 'Flowers/ZAZU_FLOWERS_Marigold.png',
+        'hellebore': 'Flowers/ZAZU_FLOWERS_Hellabore.png',
+        'rudbeckia': 'Flowers/ZAZU_FLOWERS_Rudbekia.png'
+    };
+    flowerImg.src = flowerMap[resultKey] || '';
+    flowerImg.alt = result.name;
+
     document.getElementById('result-name').textContent = result.name;
     document.getElementById('result-subtitle').textContent = result.subtitle;
 
