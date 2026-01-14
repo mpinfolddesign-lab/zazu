@@ -744,94 +744,100 @@ function renderResult(resultKey, confidence = 'Medium') {
     document.getElementById('result-avoid').textContent = result.avoid;
 
 
-    // Set up Learn More button to link to colour type page
+    // Set up result buttons to link to colour type pages
     const learnMoreBtn = document.getElementById('learn-more-btn');
+    const buyGuideBtn = document.getElementById('buy-guide-btn');
+    const proServiceBtn = document.getElementById('pro-service-btn');
+
+    const typeUrls = {
+        'periwinkle': 'https://www.zazufeu.com/colour-types/periwinkle',
+        'buttercup': 'https://www.zazufeu.com/colour-types/buttercup',
+        'columbine': 'https://www.zazufeu.com/colour-types/columbine',
+        'marigold': 'https://www.zazufeu.com/colour-types/marigold',
+        'hellebore': 'https://www.zazufeu.com/colour-types/hellebore',
+        'rudbeckia': 'https://www.zazufeu.com/colour-types/rudbeckia'
+    };
+
     learnMoreBtn.addEventListener('click', () => {
-        // Navigate to the colour type page - update these URLs with your actual pages
-        const typeUrls = {
-            'periwinkle': '/periwinkle',
-            'buttercup': '/buttercup',
-            'columbine': '/columbine',
-            'marigold': '/marigold',
-            'hellebore': '/hellebore',
-            'rudbeckia': '/rudbeckia'
-        };
-        window.location.href = typeUrls[resultKey] || '/';
+        window.location.href = typeUrls[resultKey];
     });
-}
 
-/* ––––––––––––––––––––––––
-   ACTIONS
-   –––––––––––––––––––––––– */
-
-function restartQuiz() {
-    showScreen('welcome');
-    resetState();
-}
-
-function shareResult() {
-    const result = currentState.result;
-    if (!result) return;
-
-    const url = `${window.location.origin}${window.location.pathname}?result=${result}`;
-
-    // Try to use native share API
-    if (navigator.share) {
-        navigator.share({
-            title: 'My Style Colour Type',
-            text: `I'm ${resultData[result].name}! Find out your colour type:`,
-            url: url
-        }).catch(() => {
-            // Fallback to clipboard
-            copyToClipboard(url);
-        });
-    } else {
-        // Fallback to clipboard
-        copyToClipboard(url);
-    }
-}
-
-function copyToClipboard(text) {
-    navigator.clipboard.writeText(text).then(() => {
-        showNotification('Link copied to clipboard!');
-    }).catch(() => {
-        showNotification('Could not copy link');
+    buyGuideBtn.addEventListener('click', () => {
+        window.location.href = typeUrls[resultKey];
     });
-}
 
-function showNotification(message) {
-    elements.shareNotification.textContent = message;
-    elements.shareNotification.classList.add('show');
-
-    setTimeout(() => {
-        elements.shareNotification.classList.remove('show');
-    }, 3000);
-}
-
-/* ––––––––––––––––––––––––
-   LOCAL STORAGE
+    proServiceBtn.addEventListener('click', () => {
+        window.location.href = 'https://www.zazufeu.com/services';
    –––––––––––––––––––––––– */
 
-function saveState() {
-    try {
-        localStorage.setItem('styleColourQuizState', JSON.stringify(currentState));
-    } catch (e) {
-        console.error('Could not save state:', e);
-    }
-}
+        function restartQuiz() {
+            showScreen('welcome');
+            resetState();
+        }
 
-function loadState() {
-    try {
-        const saved = localStorage.getItem('styleColourQuizState');
-        return saved ? JSON.parse(saved) : null;
-    } catch (e) {
-        console.error('Could not load state:', e);
-        return null;
-    }
-}
+        function shareResult() {
+            const result = currentState.result;
+            if (!result) return;
 
-/* ––––––––––––––––––––––––
-   START APP
-   –––––––––––––––––––––––– */
+            const url = `${window.location.origin}${window.location.pathname}?result=${result}`;
 
-document.addEventListener('DOMContentLoaded', init);
+            // Try to use native share API
+            if (navigator.share) {
+                navigator.share({
+                    title: 'My Style Colour Type',
+                    text: `I'm ${resultData[result].name}! Find out your colour type:`,
+                    url: url
+                }).catch(() => {
+                    // Fallback to clipboard
+                    copyToClipboard(url);
+                });
+            } else {
+                // Fallback to clipboard
+                copyToClipboard(url);
+            }
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                showNotification('Link copied to clipboard!');
+            }).catch(() => {
+                showNotification('Could not copy link');
+            });
+        }
+
+        function showNotification(message) {
+            elements.shareNotification.textContent = message;
+            elements.shareNotification.classList.add('show');
+
+            setTimeout(() => {
+                elements.shareNotification.classList.remove('show');
+            }, 3000);
+        }
+
+        /* ––––––––––––––––––––––––
+           LOCAL STORAGE
+           –––––––––––––––––––––––– */
+
+        function saveState() {
+            try {
+                localStorage.setItem('styleColourQuizState', JSON.stringify(currentState));
+            } catch (e) {
+                console.error('Could not save state:', e);
+            }
+        }
+
+        function loadState() {
+            try {
+                const saved = localStorage.getItem('styleColourQuizState');
+                return saved ? JSON.parse(saved) : null;
+            } catch (e) {
+                console.error('Could not load state:', e);
+                return null;
+            }
+        }
+
+        /* ––––––––––––––––––––––––
+           START APP
+           –––––––––––––––––––––––– */
+
+        document.addEventListener('DOMContentLoaded', init);
