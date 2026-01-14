@@ -758,12 +758,21 @@ function renderResult(resultKey, confidence = 'Medium') {
         'rudbeckia': 'https://www.zazufeu.com/colour-types/rudbeckia'
     };
 
+    const guideUrls = {
+        'periwinkle': 'https://www.zazufeu.com/product-page/zazu-feu-colour-guide-periwinkle',
+        'buttercup': 'https://www.zazufeu.com/product-page/zazu-feu-colour-guide-buttercup',
+        'columbine': 'https://www.zazufeu.com/product-page/zazu-feu-colour-guide-columbine',
+        'marigold': 'https://www.zazufeu.com/product-page/zazu-feu-colour-guide-marigold',
+        'hellebore': 'https://www.zazufeu.com/product-page/zazu-feu-colour-guide-hellebore',
+        'rudbeckia': 'https://www.zazufeu.com/product-page/zazu-feu-colour-guide-rudbeckia'
+    };
+
     learnMoreBtn.addEventListener('click', () => {
         window.open(typeUrls[resultKey], '_blank');
     });
 
     buyGuideBtn.addEventListener('click', () => {
-        window.open(typeUrls[resultKey], '_blank');
+        window.open(guideUrls[resultKey], '_blank');
     });
 
     proServiceBtn.addEventListener('click', () => {
