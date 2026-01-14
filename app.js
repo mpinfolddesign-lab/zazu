@@ -759,15 +759,15 @@ function renderResult(resultKey, confidence = 'Medium') {
     };
 
     learnMoreBtn.addEventListener('click', () => {
-        window.location.href = typeUrls[resultKey];
+        window.open(typeUrls[resultKey], '_blank');
     });
 
     buyGuideBtn.addEventListener('click', () => {
-        window.location.href = typeUrls[resultKey];
+        window.open(typeUrls[resultKey], '_blank');
     });
 
     proServiceBtn.addEventListener('click', () => {
-        window.location.href = 'https://www.zazufeu.com/services';
+        window.open('https://www.zazufeu.com/services', '_blank');
     });
 }
 
