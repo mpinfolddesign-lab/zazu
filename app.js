@@ -768,76 +768,81 @@ function renderResult(resultKey, confidence = 'Medium') {
 
     proServiceBtn.addEventListener('click', () => {
         window.location.href = 'https://www.zazufeu.com/services';
+    });
+}
+
+/* ––––––––––––––––––––––––
+   ACTIONS
    –––––––––––––––––––––––– */
 
-        function restartQuiz() {
-            showScreen('welcome');
-            resetState();
-        }
+function restartQuiz() {
+    showScreen('welcome');
+    resetState();
+}
 
-        function shareResult() {
-            const result = currentState.result;
-            if (!result) return;
+function shareResult() {
+    const result = currentState.result;
+    if (!result) return;
 
-            const url = `${window.location.origin}${window.location.pathname}?result=${result}`;
+    const url = `${window.location.origin}${window.location.pathname}?result=${result}`;
 
-            // Try to use native share API
-            if (navigator.share) {
-                navigator.share({
-                    title: 'My Style Colour Type',
-                    text: `I'm ${resultData[result].name}! Find out your colour type:`,
-                    url: url
-                }).catch(() => {
-                    // Fallback to clipboard
-                    copyToClipboard(url);
-                });
-            } else {
-                // Fallback to clipboard
-                copyToClipboard(url);
-            }
-        }
+    // Try to use native share API
+    if (navigator.share) {
+        navigator.share({
+            title: 'My Style Colour Type',
+            text: `I'm ${resultData[result].name}! Find out your colour type:`,
+            url: url
+        }).catch(() => {
+            // Fallback to clipboard
+            copyToClipboard(url);
+        });
+    } else {
+        // Fallback to clipboard
+        copyToClipboard(url);
+    }
+}
 
-        function copyToClipboard(text) {
-            navigator.clipboard.writeText(text).then(() => {
-                showNotification('Link copied to clipboard!');
-            }).catch(() => {
-                showNotification('Could not copy link');
-            });
-        }
+function copyToClipboard(text) {
+    navigator.clipboard.writeText(text).then(() => {
+        showNotification('Link copied to clipboard!');
+    }).catch(() => {
+        showNotification('Could not copy link');
+    });
+}
 
-        function showNotification(message) {
-            elements.shareNotification.textContent = message;
-            elements.shareNotification.classList.add('show');
+function showNotification(message) {
+    elements.shareNotification.textContent = message;
+    elements.shareNotification.classList.add('show');
 
-            setTimeout(() => {
-                elements.shareNotification.classList.remove('show');
-            }, 3000);
-        }
+    setTimeout(() => {
+        elements.shareNotification.classList.remove('show');
+    }, 3000);
+}
 
-        /* ––––––––––––––––––––––––
-           LOCAL STORAGE
-           –––––––––––––––––––––––– */
+/* ––––––––––––––––––––––––
+   LOCAL STORAGE
+   –––––––––––––––––––––––– */
 
-        function saveState() {
-            try {
-                localStorage.setItem('styleColourQuizState', JSON.stringify(currentState));
-            } catch (e) {
-                console.error('Could not save state:', e);
-            }
-        }
+function saveState() {
+    try {
+        localStorage.setItem('styleColourQuizState', JSON.stringify(currentState));
+    } catch (e) {
+        console.error('Could not save state:', e);
+    }
+}
 
-        function loadState() {
-            try {
-                const saved = localStorage.getItem('styleColourQuizState');
-                return saved ? JSON.parse(saved) : null;
-            } catch (e) {
-                console.error('Could not load state:', e);
-                return null;
-            }
-        }
+function loadState() {
+    try {
+        const saved = localStorage.getItem('styleColourQuizState');
+        return saved ? JSON.parse(saved) : null;
+    } catch (e) {
+        console.error('Could not load state:', e);
+        return null;
+    }
+}
 
-        /* ––––––––––––––––––––––––
-           START APP
-           –––––––––––––––––––––––– */
+/* ––––––––––––––––––––––––
+   START APP
+   –––––––––––––––––––––––– */
 
-        document.addEventListener('DOMContentLoaded', init);
+document.addEventListener('DOMContentLoaded', init);
