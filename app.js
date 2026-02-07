@@ -575,93 +575,235 @@ function createConfetti(resultKey) {
 function getColorSwatch(colorName) {
     const colorMap = {
         // Whites & Creams
-        'Soft white': { bg: '#F8F8F8', text: '#333' },
-        'Cream': { bg: '#FFFDD0', text: '#333' },
-        'Ivory': { bg: '#FFFFF0', text: '#333' },
-        'Warm white': { bg: '#FFF9E6', text: '#333' },
-        'Crisp white': { bg: '#FAFAFA', text: '#333' },
+        'soft white': { bg: '#F8F8F8', text: '#333' },
+        'cream': { bg: '#FFFDD0', text: '#333' },
+        'ivory': { bg: '#FFFFF0', text: '#333' },
+        'warm white': { bg: '#FFF9E6', text: '#333' },
+        'crisp white': { bg: '#FAFAFA', text: '#333' },
 
         // Greys & Neutrals
-        'Pearl grey': { bg: '#E8E8E8', text: '#333' },
-        'Cool beige': { bg: '#E3DCD0', text: '#333' },
-        'Dove grey': { bg: '#D3D3D3', text: '#333' },
-        'Warm beige': { bg: '#E8DCC5', text: '#333' },
-        'Soft camel': { bg: '#C19A6B', text: '#FFF' },
-        'Charcoal': { bg: '#4A4A4A', text: '#FFF' },
-        'Taupe': { bg: '#B8A99A', text: '#FFF' },
-        'Greige': { bg: '#C9BEB0', text: '#333' },
-        'Espresso': { bg: '#3E2723', text: '#FFF' },
-        'Deep brown': { bg: '#5D4037', text: '#FFF' },
-        'Warm black': { bg: '#2C2624', text: '#FFF' },
-        'Bronze': { bg: '#8B6341', text: '#FFF' },
-        'Chocolate': { bg: '#4E342E', text: '#FFF' },
-        'Soft black': { bg: '#3B3B3B', text: '#FFF' },
-        'Navy': { bg: '#1A237E', text: '#FFF' },
-        'True black': { bg: '#000000', text: '#FFF' },
+        'pearl grey': { bg: '#E8E8E8', text: '#333' },
+        'cool beige': { bg: '#E3DCD0', text: '#333' },
+        'dove grey': { bg: '#D3D3D3', text: '#333' },
+        'warm beige': { bg: '#E8DCC5', text: '#333' },
+        'soft camel': { bg: '#C19A6B', text: '#FFF' },
+        'charcoal': { bg: '#4A4A4A', text: '#FFF' },
+        'taupe': { bg: '#B8A99A', text: '#FFF' },
+        'greige': { bg: '#C9BEB0', text: '#333' },
+        'espresso': { bg: '#3E2723', text: '#FFF' },
+        'deep brown': { bg: '#5D4037', text: '#FFF' },
+        'warm black': { bg: '#2C2624', text: '#FFF' },
+        'bronze': { bg: '#8B6341', text: '#FFF' },
+        'chocolate': { bg: '#4E342E', text: '#FFF' },
+        'soft black': { bg: '#3B3B3B', text: '#FFF' },
+        'navy': { bg: '#1A237E', text: '#FFF' },
+        'true black': { bg: '#000000', text: '#FFF' },
 
         // Pinks & Roses
-        'Baby pink': { bg: '#FFD6E8', text: '#333' },
-        'Soft rose': { bg: '#F4C2C2', text: '#333' },
-        'Peach': { bg: '#FFDAB9', text: '#333' },
-        'Coral': { bg: '#FF7F50', text: '#FFF' },
-        'Warm pink': { bg: '#FFB6C1', text: '#333' },
-        'Apricot': { bg: '#FBCEB1', text: '#333' },
-        'Rose pink': { bg: '#E6A8D7', text: '#333' },
-        'Hot pink': { bg: '#FF69B4', text: '#FFF' },
-        'Magenta': { bg: '#C71585', text: '#FFF' },
-        'Dusty rose': { bg: '#DCAE96', text: '#333' },
-        'Mauve': { bg: '#D8B2D1', text: '#333' },
-        'Cool raspberry': { bg: '#E30B5D', text: '#FFF' },
+        'baby pink': { bg: '#FFD6E8', text: '#333' },
+        'soft rose': { bg: '#F4C2C2', text: '#333' },
+        'peach': { bg: '#FFDAB9', text: '#333' },
+        'coral': { bg: '#FF7F50', text: '#FFF' },
+        'warm pink': { bg: '#FFB6C1', text: '#333' },
+        'apricot': { bg: '#FBCEB1', text: '#333' },
+        'rose pink': { bg: '#E6A8D7', text: '#333' },
+        'hot pink': { bg: '#FF69B4', text: '#FFF' },
+        'magenta': { bg: '#C71585', text: '#FFF' },
+        'dusty rose': { bg: '#DCAE96', text: '#333' },
+        'mauve': { bg: '#D8B2D1', text: '#333' },
+        'cool raspberry': { bg: '#E30B5D', text: '#FFF' },
 
         // Reds & Burgundy
-        'True red': { bg: '#E32227', text: '#FFF' },
-        'Warm red': { bg: '#D73B3E', text: '#FFF' },
-        'Deep burgundy': { bg: '#800020', text: '#FFF' },
-        'Cherry red': { bg: '#990000', text: '#FFF' },
-        'Burgundy': { bg: '#800020', text: '#FFF' },
-        'Wine': { bg: '#722F37', text: '#FFF' },
+        'true red': { bg: '#E32227', text: '#FFF' },
+        'warm red': { bg: '#D73B3E', text: '#FFF' },
+        'deep burgundy': { bg: '#800020', text: '#FFF' },
+        'cherry red': { bg: '#990000', text: '#FFF' },
+        'burgundy': { bg: '#800020', text: '#FFF' },
+        'wine': { bg: '#722F37', text: '#FFF' },
 
         // Blues
-        'Sky blue': { bg: '#87CEEB', text: '#333' },
-        'Periwinkle blue': { bg: '#CCCCFF', text: '#333' },
-        'Soft navy': { bg: '#4A5F7F', text: '#FFF' },
-        'Icy blue': { bg: '#B0E0E6', text: '#333' },
-        'Cobalt blue': { bg: '#0047AB', text: '#FFF' },
-        'Royal blue': { bg: '#4169E1', text: '#FFF' },
-        'Deep teal': { bg: '#004D4D', text: '#FFF' },
-        'Teal': { bg: '#008080', text: '#FFF' },
-        'Warm aqua': { bg: '#7FDBFF', text: '#333' },
+        'sky blue': { bg: '#87CEEB', text: '#333' },
+        'periwinkle blue': { bg: '#CCCCFF', text: '#333' },
+        'soft navy': { bg: '#4A5F7F', text: '#FFF' },
+        'icy blue': { bg: '#B0E0E6', text: '#333' },
+        'cobalt blue': { bg: '#0047AB', text: '#FFF' },
+        'royal blue': { bg: '#4169E1', text: '#FFF' },
+        'deep teal': { bg: '#004D4D', text: '#FFF' },
+        'teal': { bg: '#008080', text: '#FFF' },
+        'warm aqua': { bg: '#7FDBFF', text: '#333' },
 
         // Purples
-        'Lavender': { bg: '#E6E6FA', text: '#333' },
-        'Soft plum': { bg: '#DDA0DD', text: '#333' },
-        'Deep plum': { bg: '#5D3A5A', text: '#FFF' },
-        'Rich purple': { bg: '#6A0DAD', text: '#FFF' },
+        'lavender': { bg: '#E6E6FA', text: '#333' },
+        'soft plum': { bg: '#DDA0DD', text: '#333' },
+        'deep plum': { bg: '#5D3A5A', text: '#FFF' },
+        'rich purple': { bg: '#6A0DAD', text: '#FFF' },
 
         // Greens
-        'Mint': { bg: '#AAF0D1', text: '#333' },
-        'Sage green': { bg: '#9DC183', text: '#333' },
-        'Forest green': { bg: '#228B22', text: '#FFF' },
-        'Emerald': { bg: '#50C878', text: '#FFF' },
-        'Pine green': { bg: '#2C5F2D', text: '#FFF' },
+        'mint': { bg: '#AAF0D1', text: '#333' },
+        'sage green': { bg: '#9DC183', text: '#333' },
+        'forest green': { bg: '#228B22', text: '#FFF' },
+        'emerald': { bg: '#50C878', text: '#FFF' },
+        'pine green': { bg: '#2C5F2D', text: '#FFF' },
 
         // Yellows & Golds
-        'Buttercup yellow': { bg: '#F3E05C', text: '#333' },
-        'Soft gold': { bg: '#FFD700', text: '#333' },
-        'Gold': { bg: '#D4AF37', text: '#333' },
-        'Lemon yellow': { bg: '#FFF44F', text: '#333' },
+        'buttercup yellow': { bg: '#F3E05C', text: '#333' },
+        'soft gold': { bg: '#FFD700', text: '#333' },
+        'gold': { bg: '#D4AF37', text: '#333' },
+        'lemon yellow': { bg: '#FFF44F', text: '#333' },
 
         // Oranges & Rust
-        'Light terracotta': { bg: '#E2725B', text: '#FFF' },
-        'Burnt orange': { bg: '#CC5500', text: '#FFF' },
-        'Rust': { bg: '#B7410E', text: '#FFF' },
-        'Copper': { bg: '#B87333', text: '#FFF' },
+        'light terracotta': { bg: '#E2725B', text: '#FFF' },
+        'burnt orange': { bg: '#CC5500', text: '#FFF' },
+        'rust': { bg: '#B7410E', text: '#FFF' },
+        'copper': { bg: '#B87333', text: '#FFF' },
+        'warm oranges': { bg: '#FF8C42', text: '#FFF' },
+        'bright orange': { bg: '#FF8800', text: '#FFF' },
 
-        // Others
-        'Silver': { bg: '#C0C0C0', text: '#333' }
+        // Compound/Descriptive terms
+        'icy colours': { bg: '#E0F2F7', text: '#333' },
+        'icy pastels': { bg: '#E8F4F8', text: '#333' },
+        'jewel tones': { bg: '#9B59B6', text: '#FFF' },
+        'earth tones': { bg: '#8B7355', text: '#FFF' },
+        'heavy earth tones': { bg: '#6B5344', text: '#FFF' },
+        'warm earth tones': { bg: '#A0826D', text: '#FFF' },
+        'muddy browns': { bg: '#6F5849', text: '#FFF' },
+        'warm browns': { bg: '#8B6F47', text: '#FFF' },
+        'cool pinks': { bg: '#FFB3D9', text: '#333' },
+        'stark white': { bg: '#FFFFFF', text: '#333' },
+        'light grey': { bg: '#D3D3D3', text: '#333' },
+        'bright white': { bg: '#FEFEFE', text: '#333' },
+        'stark black': { bg: '#000000', text: '#FFF' },
+        'intense burgundy': { bg: '#6B0F1A', text: '#FFF' },
+        'warm golden yellows': { bg: '#FFD700', text: '#333' },
+
+        // Additional terms
+        'silver': { bg: '#C0C0C0', text: '#333' },
+        'slate': { bg: '#708090', text: '#FFF' },
+        'terracotta': { bg: '#E2725B', text: '#FFF' },
+        'olive': { bg: '#808000', text: '#FFF' },
+        'warm rose': { bg: '#FF6B9D', text: '#FFF' },
+        'cool mauve': { bg: '#B8A3C8', text: '#333' },
+        'periwinkle': { bg: '#CCCCFF', text: '#333' },
+        'raspberry': { bg: '#E30B5D', text: '#FFF' },
+        'cool burgundy': { bg: '#6B0F1A', text: '#FFF' },
+        'pewter': { bg: '#96A8A1', text: '#333' },
+        'warm burgundy': { bg: '#8B0000', text: '#FFF' },
+        'warm teal': { bg: '#008B8B', text: '#FFF' },
+        'camel': { bg: '#C19A6B', text: '#FFF' },
+        'tan': { bg: '#D2B48C', text: '#333' },
+        'warm grey': { bg: '#B8A99A', text: '#FFF' },
+        'cool black': { bg: '#2B2B2B', text: '#FFF' },
+        'deep grey': { bg: '#5A5A5A', text: '#FFF' },
+        'icy white': { bg: '#F0FFFF', text: '#333' },
+        'deep navy': { bg: '#000080', text: '#FFF' },
+        'royal purple': { bg: '#7851A9', text: '#FFF' },
+        'icy pink': { bg: '#FFE4E1', text: '#333' },
+        'electric blue': { bg: '#7DF9FF', text: '#333' },
+        'warm charcoal': { bg: '#54534A', text: '#FFF' },
+        'chocolate brown': { bg: '#4E342E', text: '#FFF' },
+        'soft taupe': { bg: '#C9B8A8', text: '#333' },
+        'cool taupe': { bg: '#A89F91', text: '#FFF' },
+        'warm taupe': { bg: '#D5C5B1', text: '#333' },
+        'cool cocoa': { bg: '#8B7D6B', text: '#FFF' },
+
+        // Generic color words
+        'black': { bg: '#000000', text: '#FFF' },
+        'white': { bg: '#FFFFFF', text: '#333' },
+        'orange': { bg: '#FF8800', text: '#FFF' },
+        'brown': { bg: '#8B4513', text: '#FFF' },
+        'grey': { bg: '#808080', text: '#FFF' },
+        'gray': { bg: '#808080', text: '#FFF' },
+        'pink': { bg: '#FFC0CB', text: '#333' },
+        'yellow': { bg: '#FFFF00', text: '#333' },
+        'blue': { bg: '#0000FF', text: '#FFF' }
     };
 
-    return colorMap[colorName] || { bg: '#F6EFE8', text: '#333' };
+    // Case-insensitive lookup
+    const normalizedName = colorName.toLowerCase();
+    return colorMap[normalizedName] || { bg: '#F6EFE8', text: '#333' };
+}
+
+// Parse text to identify color names and create structured parts
+function parseColorText(text) {
+    // Get all color names from the colorMap to search for
+    const colorNames = [
+        // Add generic color names that might appear in avoid text
+        'black', 'white', 'orange', 'oranges', 'rust', 'burgundy', 'peach', 'brown', 'browns',
+        'grey', 'pink', 'pinks', 'yellow', 'yellows', 'blue', 'navy', 'charcoal',
+        // Compound/descriptive terms (check these first as they're more specific)
+        'warm oranges', 'icy colours', 'icy pastels', 'jewel tones', 'earth tones',
+        'heavy earth tones', 'warm earth tones', 'muddy browns', 'warm browns', 'cool pinks',
+        'stark white', 'light grey', 'bright white', 'stark black', 'intense burgundy',
+        'warm golden yellows', 'bright orange',
+        // Also specific colors
+        'Soft white', 'Cream', 'Ivory', 'Warm white', 'Crisp white',
+        'Pearl grey', 'Cool beige', 'Dove grey', 'Warm beige', 'Soft camel',
+        'Charcoal', 'Taupe', 'Greige', 'Espresso', 'Deep brown', 'Warm black',
+        'Bronze', 'Chocolate', 'Soft black', 'Navy', 'True black',
+        'Baby pink', 'Soft rose', 'Peach', 'Coral', 'Warm pink', 'Apricot',
+        'Rose pink', 'Hot pink', 'Magenta', 'Dusty rose', 'Mauve', 'Cool raspberry',
+        'True red', 'Warm red', 'Deep burgundy', 'Cherry red', 'Burgundy', 'Wine',
+        'Sky blue', 'Periwinkle blue', 'Soft navy', 'Icy blue', 'Cobalt blue',
+        'Royal blue', 'Deep teal', 'Teal', 'Warm aqua',
+        'Lavender', 'Soft plum', 'Deep plum', 'Rich purple',
+        'Mint', 'Sage green', 'Forest green', 'Emerald', 'Pine green',
+        'Buttercup yellow', 'Soft gold', 'Gold', 'Lemon yellow',
+        'Light terracotta', 'Burnt orange', 'Rust', 'Copper',
+        'Silver', 'Slate', 'Terracotta', 'Olive', 'Warm rose',
+        'Cool mauve', 'Periwinkle', 'Raspberry', 'Cool burgundy', 'Pewter',
+        'Warm burgundy', 'Warm teal', 'Camel', 'Tan', 'Warm grey',
+        'Cool black', 'Deep grey', 'Icy white', 'Deep navy', 'Royal purple',
+        'Icy pink', 'Electric blue', 'Warm charcoal', 'Chocolate brown',
+        'Soft taupe', 'Cool taupe', 'Warm taupe', 'Cool cocoa'
+    ];
+
+    // Create a case-insensitive regex pattern for color matching
+    // Sort by length (longest first) to match "warm golden yellows" before "yellows"
+    const sortedColors = colorNames.sort((a, b) => b.length - a.length);
+    const colorPattern = new RegExp(
+        `\\b(${sortedColors.map(c => c.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})\\b`,
+        'gi'
+    );
+
+    const parts = [];
+    let lastIndex = 0;
+    let match;
+
+    while ((match = colorPattern.exec(text)) !== null) {
+        // Add text before the match
+        if (match.index > lastIndex) {
+            parts.push({
+                text: text.substring(lastIndex, match.index),
+                isColor: false
+            });
+        }
+
+        // Add the color match
+        parts.push({
+            text: match[0],
+            isColor: true
+        });
+
+        lastIndex = match.index + match[0].length;
+    }
+
+    // Add remaining text
+    if (lastIndex < text.length) {
+        parts.push({
+            text: text.substring(lastIndex),
+            isColor: false
+        });
+    }
+
+    // If no colors found, return the whole text as non-color
+    if (parts.length === 0) {
+        parts.push({
+            text: text,
+            isColor: false
+        });
+    }
+
+    return parts;
 }
 
 /* ––––––––––––––––––––––––
@@ -740,8 +882,31 @@ function renderResult(resultKey, confidence = 'Medium') {
         coloursContainer.appendChild(categoryDiv);
     });
 
-    // Show avoid section
-    document.getElementById('result-avoid').textContent = result.avoid;
+    // Show avoid section with colored tags
+    const avoidContainer = document.getElementById('result-avoid');
+    avoidContainer.innerHTML = '';
+
+    // Parse the avoid text to extract color names and create colored tags
+    const avoidText = result.avoid;
+    const avoidParts = parseColorText(avoidText);
+
+    avoidParts.forEach(part => {
+        if (part.isColor) {
+            const colorTag = document.createElement('span');
+            colorTag.className = 'colour-tag';
+            colorTag.textContent = part.text;
+
+            // Apply color swatch
+            const swatch = getColorSwatch(part.text);
+            colorTag.style.backgroundColor = swatch.bg;
+            colorTag.style.color = swatch.text;
+
+            avoidContainer.appendChild(colorTag);
+        } else {
+            const textNode = document.createTextNode(part.text);
+            avoidContainer.appendChild(textNode);
+        }
+    });
 
 
     // Set up result buttons to link to colour type pages

@@ -474,6 +474,13 @@ button:focus-visible {
     gap: 8px;
 }
 
+#result-avoid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+}
+
 .colour-tag {
     display: inline-block;
     padding: 6px 12px;
