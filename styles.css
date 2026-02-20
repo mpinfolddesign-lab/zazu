@@ -376,10 +376,7 @@ button:focus-visible {
 .result-name {
     font-size: 36px;
     margin-bottom: 8px;
-    background: linear-gradient(135deg, var(--primary), #E87B98);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--text-primary);
 }
 
 .result-subtitle {
@@ -513,13 +510,13 @@ button:focus-visible {
 }
 
 .btn-learn-more {
-    background: linear-gradient(135deg, var(--primary) 0%, #E87B98 100%);
+    background: var(--primary);
     color: white;
     font-weight: 700;
     font-size: 18px;
     padding: 16px 32px;
     width: 100%;
-    box-shadow: 0 4px 16px rgba(216, 91, 125, 0.3);
+    box-shadow: 0 2px 8px rgba(216, 91, 125, 0.25);
     border: none;
     border-radius: 12px;
     cursor: pointer;
@@ -527,8 +524,8 @@ button:focus-visible {
 }
 
 .btn-learn-more:hover {
-    background: linear-gradient(135deg, var(--primary-hover) 0%, #E56B88 100%);
-    box-shadow: 0 6px 20px rgba(216, 91, 125, 0.5);
+    background: var(--primary-hover);
+    box-shadow: 0 4px 12px rgba(216, 91, 125, 0.3);
     transform: translateY(-2px) scale(1.02);
 }
 
@@ -571,13 +568,35 @@ button:focus-visible {
     font-size: 14px;
     color: var(--text-primary);
     border: 1px solid rgba(0, 0, 0, 0.08);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
     font-weight: 500;
 }
 
 .colour-tag:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    border-color: var(--border);
+    background-color: #F9F4EF;
+}
+
+.colour-tag-locked {
+    background-color: transparent;
+    border-style: dashed;
+    color: var(--text-muted);
+}
+
+.colour-tag-locked:hover {
+    background-color: transparent;
+    border-color: var(--border);
+}
+
+.colour-unlock-hint {
+    margin-top: 12px;
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+.avoid-unlock-hint {
+    flex-basis: 100%;
 }
 
 /* ––––––––––––––––––––––––
@@ -688,63 +707,44 @@ button:focus-visible {
 }
 
 .btn-gold {
-    background: linear-gradient(135deg, #D4AF37 0%, #F9E79F 50%, #D4AF37 100%);
-    background-size: 200% auto;
-    color: #1A1A1A;
+    background: var(--primary);
+    color: #FFFFFF;
     font-weight: 700;
     width: 100%;
-    box-shadow: 0 4px 16px rgba(212, 175, 55, 0.4);
-    position: relative;
-    overflow: hidden;
-    border: 2px solid #B8941F;
-}
-
-.btn-gold::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg,
-            transparent,
-            rgba(255, 255, 255, 0.6),
-            transparent);
-    animation: goldShimmer 2.5s infinite;
+    box-shadow: 0 2px 8px rgba(216, 91, 125, 0.25);
+    border: none;
 }
 
 .btn-gold:hover {
-    background-position: right center;
-    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6);
+    background: var(--primary-hover);
+    box-shadow: 0 4px 12px rgba(216, 91, 125, 0.3);
     transform: translateY(-2px) scale(1.02);
-    border-color: #D4AF37;
 }
 
 .btn-gold:active {
     transform: translateY(0) scale(0.98);
-    box-shadow: 0 2px 8px rgba(212, 175, 55, 0.3);
+    box-shadow: 0 2px 8px rgba(216, 91, 125, 0.25);
 }
 
 .btn-pro {
-    background: linear-gradient(135deg, #6B5B95 0%, #8B7BA8 100%);
+    background: var(--primary);
     color: white;
     font-weight: 700;
     width: 100%;
-    box-shadow: 0 4px 16px rgba(107, 91, 149, 0.3);
-    border: 2px solid #5B4B85;
+    box-shadow: 0 2px 8px rgba(216, 91, 125, 0.25);
+    border: none;
     transition: all 0.3s ease;
 }
 
 .btn-pro:hover {
-    background: linear-gradient(135deg, #5B4B85 0%, #7B6B98 100%);
-    box-shadow: 0 6px 20px rgba(107, 91, 149, 0.5);
+    background: var(--primary-hover);
+    box-shadow: 0 4px 12px rgba(216, 91, 125, 0.3);
     transform: translateY(-2px) scale(1.02);
-    border-color: #4B3B75;
 }
 
 .btn-pro:active {
     transform: translateY(0) scale(0.98);
-    box-shadow: 0 2px 8px rgba(107, 91, 149, 0.25);
+    box-shadow: 0 2px 8px rgba(216, 91, 125, 0.25);
 }
 
 /* ––––––––––––––––––––––––
@@ -940,20 +940,6 @@ button:focus-visible {
 
     100% {
         transform: translateX(100%);
-    }
-}
-
-@keyframes goldShimmer {
-    0% {
-        left: -100%;
-    }
-
-    50% {
-        left: 100%;
-    }
-
-    100% {
-        left: 100%;
     }
 }
 

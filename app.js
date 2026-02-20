@@ -517,7 +517,6 @@ function showDisclaimerModal(result, confidence) {
     const handleContinue = () => {
         showScreen('result');
         renderResult(result, confidence);
-        createConfetti(result); // Add confetti celebration with result type
         continueBtn.removeEventListener('click', handleContinue);
     };
 
@@ -852,6 +851,7 @@ function renderResult(resultKey, confidence = 'Medium') {
     // Show colours organized by category
     const coloursContainer = document.getElementById('result-colours');
     coloursContainer.innerHTML = '';
+    const previewCountPerCategory = 2;
 
     Object.keys(result.colours).forEach(category => {
         const categoryDiv = document.createElement('div');
@@ -864,49 +864,71 @@ function renderResult(resultKey, confidence = 'Medium') {
         const colourList = document.createElement('div');
         colourList.className = 'colour-list';
 
-        result.colours[category].forEach(colour => {
+        const categoryColours = result.colours[category];
+        const visibleColours = categoryColours.slice(0, previewCountPerCategory);
+        const hiddenCount = Math.max(0, categoryColours.length - visibleColours.length);
+
+        visibleColours.forEach(colour => {
             const colourTag = document.createElement('span');
             colourTag.className = 'colour-tag';
             colourTag.textContent = colour;
 
-            // Apply color swatch
-            const swatch = getColorSwatch(colour);
-            colourTag.style.backgroundColor = swatch.bg;
-            colourTag.style.color = swatch.text;
-
             colourList.appendChild(colourTag);
         });
+
+        if (hiddenCount > 0) {
+            const lockedTag = document.createElement('span');
+            lockedTag.className = 'colour-tag colour-tag-locked';
+            lockedTag.textContent = `+${hiddenCount} more`;
+            colourList.appendChild(lockedTag);
+        }
 
         categoryDiv.appendChild(categoryTitle);
         categoryDiv.appendChild(colourList);
         coloursContainer.appendChild(categoryDiv);
     });
 
+    const unlockHint = document.createElement('p');
+    unlockHint.className = 'colour-unlock-hint';
+    unlockHint.textContent = 'Want your full palette? Unlock every shade with the 25-page guide, or tap Learn More About Your Type below.';
+    coloursContainer.appendChild(unlockHint);
+
     // Show avoid section with colored tags
     const avoidContainer = document.getElementById('result-avoid');
     avoidContainer.innerHTML = '';
 
-    // Parse the avoid text to extract color names and create colored tags
-    const avoidText = result.avoid;
-    const avoidParts = parseColorText(avoidText);
+    const avoidPreviewCount = 2;
+    const avoidItems = result.avoid
+        .replace(/\.$/, '')
+        .split(',')
+        .map(item => item.trim())
+        .filter(Boolean);
 
-    avoidParts.forEach(part => {
-        if (part.isColor) {
-            const colorTag = document.createElement('span');
-            colorTag.className = 'colour-tag';
-            colorTag.textContent = part.text;
+    if (avoidItems.length === 0) {
+        avoidContainer.textContent = result.avoid;
+    } else {
+        const visibleAvoidItems = avoidItems.slice(0, avoidPreviewCount);
+        const hiddenAvoidCount = Math.max(0, avoidItems.length - visibleAvoidItems.length);
 
-            // Apply color swatch
-            const swatch = getColorSwatch(part.text);
-            colorTag.style.backgroundColor = swatch.bg;
-            colorTag.style.color = swatch.text;
+        visibleAvoidItems.forEach(item => {
+            const avoidTag = document.createElement('span');
+            avoidTag.className = 'colour-tag';
+            avoidTag.textContent = item;
+            avoidContainer.appendChild(avoidTag);
+        });
 
-            avoidContainer.appendChild(colorTag);
-        } else {
-            const textNode = document.createTextNode(part.text);
-            avoidContainer.appendChild(textNode);
+        if (hiddenAvoidCount > 0) {
+            const lockedAvoidTag = document.createElement('span');
+            lockedAvoidTag.className = 'colour-tag colour-tag-locked';
+            lockedAvoidTag.textContent = `+${hiddenAvoidCount} more`;
+            avoidContainer.appendChild(lockedAvoidTag);
+
+            const avoidUnlockHint = document.createElement('p');
+            avoidUnlockHint.className = 'colour-unlock-hint avoid-unlock-hint';
+            avoidUnlockHint.textContent = 'Unlock your full avoid list in the 25-page guide, or tap Learn More About Your Type.';
+            avoidContainer.appendChild(avoidUnlockHint);
         }
-    });
+    }
 
 
     // Set up result buttons to link to colour type pages
