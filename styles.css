@@ -12,6 +12,9 @@
     --primary: #D85B7D;
     --primary-hover: #C34A6B;
     --primary-active: #B23959;
+    --gold-deep: #7B6140;
+    --gold-mid: #B89A69;
+    --gold-bright: #F0E2C4;
     --background: #F6EFE8;
     --card-bg: #FFFFFF;
     --text-primary: #1A1A1A;
@@ -495,43 +498,83 @@ button:focus-visible {
 
 .result-cta-section {
     background-color: var(--background);
-    padding: 32px 24px;
+    padding: 24px 20px;
     border-radius: 12px;
     text-align: center;
-    margin-top: 16px;
+    margin-top: 10px;
 }
 
 .result-cta-text {
-    font-size: 18px;
+    font-size: 17px;
     font-weight: 500;
     color: var(--text-primary);
-    margin-bottom: 24px;
+    margin-bottom: 14px;
     line-height: 1.5;
 }
 
+.result-cta-note {
+    margin-top: 8px;
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
 .btn-learn-more {
-    background: var(--primary);
-    color: white;
+    background: linear-gradient(145deg,
+            var(--gold-deep) 0%,
+            var(--gold-mid) 34%,
+            var(--gold-bright) 51%,
+            var(--gold-mid) 70%,
+            var(--gold-deep) 100%);
+    color: #2F2215;
     font-weight: 700;
     font-size: 18px;
     padding: 16px 32px;
     width: 100%;
-    box-shadow: 0 2px 8px rgba(216, 91, 125, 0.25);
-    border: none;
+    box-shadow:
+        0 8px 20px rgba(48, 35, 21, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.42),
+        inset 0 -1px 0 rgba(88, 65, 36, 0.28);
+    border: 1px solid rgba(96, 71, 41, 0.34);
     border-radius: 12px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.18);
+    animation: goldGlow 4.2s ease-in-out infinite;
+}
+
+.btn-learn-more::before {
+    content: '';
+    position: absolute;
+    top: -110%;
+    left: -30%;
+    width: 30%;
+    height: 320%;
+    transform: rotate(20deg);
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.5),
+            transparent);
+    animation: goldGlisten 4.8s ease-in-out infinite;
+    pointer-events: none;
 }
 
 .btn-learn-more:hover {
-    background: var(--primary-hover);
-    box-shadow: 0 4px 12px rgba(216, 91, 125, 0.3);
-    transform: translateY(-2px) scale(1.02);
+    box-shadow:
+        0 10px 24px rgba(48, 35, 21, 0.24),
+        inset 0 1px 0 rgba(255, 255, 255, 0.52),
+        inset 0 -1px 0 rgba(88, 65, 36, 0.34);
+    transform: translateY(-1px) scale(1.012);
 }
 
 .btn-learn-more:active {
-    transform: translateY(0) scale(0.98);
-    box-shadow: 0 2px 8px rgba(216, 91, 125, 0.25);
+    transform: translateY(0) scale(0.99);
+    box-shadow:
+        0 6px 14px rgba(48, 35, 21, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.34),
+        inset 0 -1px 0 rgba(88, 65, 36, 0.32);
 }
 
 .result-colours {
@@ -663,11 +706,49 @@ button:focus-visible {
 
 .result-actions {
     display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-top: 32px;
-    padding-top: 32px;
-    border-top: 1px solid var(--border);
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 14px;
+}
+
+.result-bottom-link {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.btn-tertiary {
+    background: transparent;
+    color: var(--text-secondary);
+    border: none;
+    padding: 0;
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 0.2s ease;
+}
+
+.btn-tertiary:hover {
+    color: var(--text-primary);
+    transform: none;
+}
+
+.btn-tertiary:active {
+    color: var(--text-muted);
+    transform: none;
+}
+
+.btn-tertiary-subtle {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-muted);
+    text-decoration-thickness: 1px;
+}
+
+.btn-tertiary-subtle:hover {
+    color: var(--text-secondary);
 }
 
 /* ––––––––––––––––––––––––
@@ -940,6 +1021,49 @@ button:focus-visible {
 
     100% {
         transform: translateX(100%);
+    }
+}
+
+@keyframes goldGlisten {
+    0% {
+        left: -40%;
+        opacity: 0;
+    }
+
+    14% {
+        opacity: 0;
+    }
+
+    30% {
+        opacity: 0.75;
+    }
+
+    52% {
+        left: 112%;
+        opacity: 0;
+    }
+
+    100% {
+        left: 112%;
+        opacity: 0;
+    }
+}
+
+@keyframes goldGlow {
+
+    0%,
+    100% {
+        box-shadow:
+            0 8px 20px rgba(48, 35, 21, 0.18),
+            inset 0 1px 0 rgba(255, 255, 255, 0.38),
+            inset 0 -1px 0 rgba(88, 65, 36, 0.26);
+    }
+
+    50% {
+        box-shadow:
+            0 10px 24px rgba(48, 35, 21, 0.24),
+            inset 0 1px 0 rgba(255, 255, 255, 0.5),
+            inset 0 -1px 0 rgba(88, 65, 36, 0.34);
     }
 }
 
