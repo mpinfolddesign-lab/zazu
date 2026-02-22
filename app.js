@@ -946,25 +946,26 @@ function renderResult(resultKey, confidence = 'Medium') {
         'rudbeckia': 'https://www.zazufeu.com/colour-types/rudbeckia'
     };
 
+    const buildUtmUrl = (url, content) => {
+        const utmUrl = new URL(url);
+        utmUrl.searchParams.set('utm_source', 'zazu_quiz');
+        utmUrl.searchParams.set('utm_medium', 'quiz_exit');
+        utmUrl.searchParams.set('utm_campaign', 'colour_type_quiz');
+        if (content) {
+            utmUrl.searchParams.set('utm_content', content);
+        }
+        return utmUrl.toString();
+    };
+
     learnMoreBtn.textContent = `Learn More About ${result.name}`;
     learnMoreBtn.onclick = () => {
-        if (typeof gtag === 'function') {
-            gtag('event', 'quiz_colour_guide_click', {
-                event_category: 'Quiz',
-                event_label: `Guide: ${result.name}`
-            });
-        }
-        window.open(typeUrls[resultKey], '_blank');
+        const guideUrl = buildUtmUrl(typeUrls[resultKey], `guide_${resultKey}`);
+        window.open(guideUrl, '_blank');
     };
 
     proServiceBtn.onclick = () => {
-        if (typeof gtag === 'function') {
-            gtag('event', 'quiz_pro_analysis_click', {
-                event_category: 'Quiz',
-                event_label: 'Discover Pro Analysis'
-            });
-        }
-        window.open('https://www.zazufeu.com/services', '_blank');
+        const proUrl = buildUtmUrl('https://www.zazufeu.com/services', 'pro_analysis');
+        window.open(proUrl, '_blank');
     };
 }
 
