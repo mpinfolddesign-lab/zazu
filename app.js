@@ -266,6 +266,12 @@ function showScreen(screenName) {
    –––––––––––––––––––––––– */
 
 function startQuiz() {
+    if (typeof gtag === 'function') {
+        gtag('event', 'quiz_start_click', {
+            event_category: 'Quiz',
+            event_label: 'Start Quiz'
+        });
+    }
     resetState();
     showScreen('quiz');
     renderQuestion();
@@ -942,10 +948,22 @@ function renderResult(resultKey, confidence = 'Medium') {
 
     learnMoreBtn.textContent = `Learn More About ${result.name}`;
     learnMoreBtn.onclick = () => {
+        if (typeof gtag === 'function') {
+            gtag('event', 'quiz_colour_guide_click', {
+                event_category: 'Quiz',
+                event_label: `Guide: ${result.name}`
+            });
+        }
         window.open(typeUrls[resultKey], '_blank');
     };
 
     proServiceBtn.onclick = () => {
+        if (typeof gtag === 'function') {
+            gtag('event', 'quiz_pro_analysis_click', {
+                event_category: 'Quiz',
+                event_label: 'Discover Pro Analysis'
+            });
+        }
         window.open('https://www.zazufeu.com/services', '_blank');
     };
 }
@@ -955,6 +973,12 @@ function renderResult(resultKey, confidence = 'Medium') {
    –––––––––––––––––––––––– */
 
 function restartQuiz() {
+    if (typeof gtag === 'function') {
+        gtag('event', 'quiz_retake_click', {
+            event_category: 'Quiz',
+            event_label: 'Retake Quiz'
+        });
+    }
     showScreen('welcome');
     resetState();
 }
