@@ -515,6 +515,12 @@ function showDisclaimerModal(result, confidence) {
 
     // Handle continue button
     const handleContinue = () => {
+        if (typeof gtag === 'function') {
+            gtag('event', 'quiz_results_click', {
+                event_category: 'Quiz',
+                event_label: 'Show My Results'
+            });
+        }
         showScreen('result');
         renderResult(result, confidence);
         continueBtn.removeEventListener('click', handleContinue);
