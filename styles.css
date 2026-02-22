@@ -84,7 +84,6 @@ body {
     max-width: 120px;
     height: auto;
     margin: 0 auto 32px;
-    animation: gentleFloat 3s ease-in-out infinite;
 }
 
 .brand-logo-small {
@@ -92,7 +91,6 @@ body {
     max-width: 80px;
     height: auto;
     margin: 0 auto 24px;
-    animation: gentleFloat 3s ease-in-out infinite;
 }
 
 .quiz-header {
