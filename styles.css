@@ -33,6 +33,7 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     min-height: 100vh;
+    min-height: 100svh;
     display: flex;
     flex-direction: column;
 }
@@ -45,7 +46,10 @@ body {
     width: 100%;
     max-width: 480px;
     margin: 0 auto;
-    padding: 20px 16px;
+    padding-top: 20px;
+    padding-bottom: max(20px, env(safe-area-inset-bottom));
+    padding-left: max(16px, env(safe-area-inset-left));
+    padding-right: max(16px, env(safe-area-inset-right));
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -102,7 +106,7 @@ body {
    –––––––––––––––––––––––– */
 
 h1 {
-    font-size: 32px;
+    font-size: clamp(28px, 6vw, 40px);
     font-weight: 600;
     letter-spacing: -0.5px;
     margin-bottom: 24px;
@@ -133,7 +137,7 @@ h2 {
 
 .question-title {
     font-family: 'Bodoni Moda', serif;
-    font-size: 24px;
+    font-size: clamp(20px, 4.5vw, 26px);
     font-weight: 700;
     color: var(--primary);
     margin-bottom: 24px;
@@ -375,7 +379,7 @@ button:focus-visible {
 }
 
 .result-name {
-    font-size: 36px;
+    font-size: clamp(30px, 8vw, 44px);
     margin-bottom: 8px;
     color: var(--text-primary);
 }
@@ -1069,9 +1073,25 @@ button:focus-visible {
    RESPONSIVE
    –––––––––––––––––––––––– */
 
+@media (max-width: 360px) {
+    .card {
+        padding: 24px 18px;
+    }
+
+    .confidence-label,
+    .confidence-text {
+        min-width: 0;
+    }
+
+    .nav-buttons .btn-secondary {
+        padding: 14px 16px;
+    }
+}
+
 @media (min-width: 768px) {
     .container {
-        padding: 40px 24px;
+        padding-top: 40px;
+        padding-bottom: max(40px, env(safe-area-inset-bottom));
     }
 
     .card {
@@ -1081,17 +1101,25 @@ button:focus-visible {
     .card-result {
         padding: 56px 48px;
     }
+}
 
-    h1 {
-        font-size: 40px;
+@media (min-width: 1024px) {
+    .container {
+        max-width: 560px;
+        padding-top: 56px;
     }
 
-    .result-name {
-        font-size: 42px;
+    .card {
+        padding: 56px 48px;
     }
 
-    .question-title {
-        font-size: 24px;
+    .card-result {
+        padding: 64px 56px;
+    }
+
+    .result-flower {
+        width: 144px;
+        height: 144px;
     }
 }
 

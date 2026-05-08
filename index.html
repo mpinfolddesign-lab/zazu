@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="description"
         content="Discover your unique colour family with our Style Colour Type quiz. Find out if you're Periwinkle, Buttercup, Columbine, Marigold, Hellebore, or Rudbeckia.">
     <title>Style Colour Type Quiz | Zazu Feu</title>
@@ -21,7 +21,8 @@
         <!-- Welcome Screen -->
         <div id="welcome-screen" class="screen active">
             <div class="card">
-                <img src="ZF_LOGO.png" alt="Zazu Feu" class="brand-logo">
+                <img src="ZF_LOGO.png" alt="Zazu Feu" class="brand-logo"
+                    width="120" height="120" decoding="async" fetchpriority="high">
                 <h1>Discover your Zazu Feu Colour Type</h1>
                 <p class="intro-text">There are 6 colour types: <strong>Periwinkle, Buttercup, Columbine, Marigold,
                         Hellebore,</strong> and <strong>Rudbeckia</strong>.</p>
@@ -36,11 +37,12 @@
         <div id="quiz-screen" class="screen">
             <div class="card">
                 <div class="quiz-header">
-                    <img src="ZF_LOGO.png" alt="Zazu Feu" class="brand-logo-small">
+                    <img src="ZF_LOGO.png" alt="" class="brand-logo-small"
+                        width="80" height="80" decoding="async">
                 </div>
                 <!-- Progress Bar -->
-                <div class="progress-container" role="progressbar" aria-valuenow="0" aria-valuemin="0"
-                    aria-valuemax="100">
+                <div class="progress-container" role="progressbar" aria-label="Quiz progress"
+                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
                     <div class="progress-bar" id="progress-bar"></div>
                     <span class="progress-text" id="progress-text">Question 1 of 9</span>
                 </div>
@@ -63,11 +65,14 @@
 
         <!-- Result Screen -->
         <div id="result-screen" class="screen">
-            <div id="confetti-container" class="confetti-container"></div>
+            <div id="confetti-container" class="confetti-container" aria-hidden="true"></div>
             <div class="card card-result">
                 <div class="result-header">
-                    <img src="ZF_LOGO.png" alt="Zazu Feu" class="brand-logo-small">
-                    <img id="result-flower" class="result-flower" alt="" src="">
+                    <img src="ZF_LOGO.png" alt="" class="brand-logo-small"
+                        width="80" height="80" decoding="async">
+                    <img id="result-flower" class="result-flower" alt=""
+                        width="120" height="120" decoding="async" loading="lazy"
+                        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E">
                     <h1 id="result-name" class="result-name"></h1>
                     <p id="result-subtitle" class="result-subtitle"></p>
                     <div class="confidence-gauge">
@@ -134,7 +139,7 @@
                     <p class="generating-text">Analysing your results...</p>
                 </div>
 
-                <button class="btn-primary" id="continue-to-results-btn" style="display: none;"
+                <button class="btn-primary" id="continue-to-results-btn" hidden
                     aria-label="Continue to see your results">Show My Results</button>
             </div>
         </div>

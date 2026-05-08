@@ -506,13 +506,18 @@ function showDisclaimerModal(result, confidence) {
     const continueBtn = document.getElementById('continue-to-results-btn');
     const generatingIcon = document.getElementById('generating-icon');
 
+    // Reset state so retakes show the spinner again before revealing the button
+    generatingIcon.hidden = false;
+    continueBtn.hidden = true;
+    continueBtn.classList.remove('visible');
+
     showScreen('disclaimer');
     disclaimerScreen.classList.add('active');
 
     // Show loading animation for 7 seconds, then reveal button
     setTimeout(() => {
-        generatingIcon.style.display = 'none';
-        continueBtn.style.display = 'block';
+        generatingIcon.hidden = true;
+        continueBtn.hidden = false;
         // Small delay for display change, then add visible class for animation
         setTimeout(() => {
             continueBtn.classList.add('visible');
@@ -651,17 +656,17 @@ function renderResult(resultKey, confidence = 'Medium') {
     }
 
 
-    // Set up result buttons to link to colour type pages
+    // Set up result buttons to link to the per-type Colour Guide product pages
     const learnMoreBtn = document.getElementById('learn-more-btn');
     const proServiceBtn = document.getElementById('pro-service-btn');
 
     const typeUrls = {
-        'periwinkle': 'https://www.zazufeu.com/colour-types/periwinkle',
-        'buttercup': 'https://www.zazufeu.com/colour-types/buttercup',
-        'columbine': 'https://www.zazufeu.com/colour-types/columbine',
-        'marigold': 'https://www.zazufeu.com/colour-types/marigold',
-        'hellebore': 'https://www.zazufeu.com/colour-types/hellebore',
-        'rudbeckia': 'https://www.zazufeu.com/colour-types/rudbeckia'
+        'periwinkle': 'https://www.zazufeu.com/product-page/zazu-feu-colour-guide-periwinkle',
+        'buttercup': 'https://www.zazufeu.com/product-page/zazu-feu-colour-guide-buttercup',
+        'columbine': 'https://www.zazufeu.com/product-page/zazu-feu-colour-guide-columbine',
+        'marigold': 'https://www.zazufeu.com/product-page/zazu-feu-colour-guide-marigold',
+        'hellebore': 'https://www.zazufeu.com/product-page/zazu-feu-colour-guide-hellebore',
+        'rudbeckia': 'https://www.zazufeu.com/product-page/zazu-feu-colour-guide-rudbeckia'
     };
 
     const buildUtmUrl = (url, content) => {
