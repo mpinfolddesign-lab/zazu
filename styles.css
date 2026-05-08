@@ -753,6 +753,48 @@ button:focus-visible {
     color: var(--text-secondary);
 }
 
+#pro-service-btn {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    text-align: center;
+    line-height: 1.4;
+    padding: 4px 8px;
+}
+
+.pro-service-question {
+    font-style: italic;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-muted);
+}
+
+.pro-service-action {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+    transition: color 0.2s ease;
+}
+
+.pro-service-arrow {
+    display: inline-block;
+    margin-left: 2px;
+    transition: transform 0.2s ease;
+}
+
+#pro-service-btn:hover .pro-service-action {
+    color: var(--text-primary);
+}
+
+#pro-service-btn:hover .pro-service-arrow {
+    transform: translateX(3px);
+}
+
 /* ––––––––––––––––––––––––
    CONFETTI
    –––––––––––––––––––––––– */

@@ -583,6 +583,10 @@ function renderResult(resultKey, confidence = 'Medium') {
     // Update description
     document.getElementById('result-description').textContent = result.description;
 
+    // Personalised CTA copy promoting the matching Colour & Style Guide
+    document.getElementById('result-cta-text').textContent =
+        `Discover every shade of your ${result.name} brilliance with our exclusive Zazu Feu's 25-page Colour & Style Guide — your complete companion for understanding, wearing, and celebrating your unique palette!`;
+
     // Show colours organized by category
     const coloursContainer = document.getElementById('result-colours');
     coloursContainer.innerHTML = '';
